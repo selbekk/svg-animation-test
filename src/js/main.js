@@ -1,3 +1,4 @@
 import snap from 'snapsvg';
+import velocity from 'velocity-animate';
 
-console.log('hello world');
+console.log('Bundle loaded');
