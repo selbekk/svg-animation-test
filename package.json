@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prebuild": "rm -rf dist && mkdir dist",
     "build": "npm run build:js & npm run build:css",
     "build:css": "sass ./src/scss/main.scss:./dist/styles.css",
     "build:js": "browserify ./src/js/main.js -t babelify > dist/bundle.js",
