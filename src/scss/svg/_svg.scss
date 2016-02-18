@@ -3,6 +3,10 @@
     width: 100%;
 }
 
+.svg-container svg {
+    overflow: visible;
+}
+
 .svg-fill {
     fill: #454545;
 }

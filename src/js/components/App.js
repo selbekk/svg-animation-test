@@ -26,9 +26,11 @@ const App = React.createClass({
         );
     },
     chooseLeft: function() {
+        if(this.state.step) return;
         this.setState({ heading: 'Hvor stor er pakken?', leftButton: 'liten', rightButton: 'stor', step: 'parcel' });
     },
     chooseRight: function() {
+        if(this.state.step) return;
         this.setState({ heading: 'Hvor tungt er brevet?', leftButton: 'lite', rightButton: 'stort', step: 'letter' });
     },
 })
