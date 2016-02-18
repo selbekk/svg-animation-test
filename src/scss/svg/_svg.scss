@@ -2,3 +2,19 @@
     background-color: #fff;
     width: 100%;
 }
+
+.svg-fill {
+    fill: #454545;
+}
+
+.svg-stroke {
+    fill: none;
+    stroke: #454545;
+    stroke-width: 2;
+}
+
+.svg-stroke.mod-rounded {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit:10;
+}

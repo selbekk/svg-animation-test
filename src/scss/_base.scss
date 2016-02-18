@@ -9,10 +9,54 @@ body {
     font-family: Helvetica, sans-serif;
 }
 
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
 .container {
     max-width: 600px;
     margin: 0 auto 1.5em;
     padding: 3em;
     border: 1px solid #e6e6e6;
     background-color: #eee;
+}
+
+.app-heading {
+    font-size: 3em;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.buttons {
+    @include clearfix;
+}
+
+.half {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.button {
+    background-color: #e32d22;
+    border: none;
+    color: white;
+    display: block;
+    font-size: 1.2em;
+    width: 80%;
+    padding: .5em 1em;
+    margin: 0 auto;
+    transition: background-color .1s ease-out;
+}
+
+.button:focus,
+.button:hover {
+    background-color: #cd291f;
 }

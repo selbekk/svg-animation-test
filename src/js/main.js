@@ -1,4 +1,7 @@
-import snap from 'snapsvg';
-import velocity from 'velocity-animate';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './components/App';
 
-console.log('Bundle loaded');
+const appNode = document.getElementById('app');
+
+ReactDOM.render(<App />, appNode)
