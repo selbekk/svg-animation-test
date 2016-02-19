@@ -32,19 +32,19 @@ class SVGContainer extends Component {
     arrowBump() {
         const { letter, parcel, loop, arrow } = this.refs;
 
-        const timeline = new TimelineMax({ repeat: -1, repeatDelay: 1 })
-            .to(arrow, 0.1, { x: '+=5' })
-            .to(letter, 0.1, { x: '+=5', scaleX: '0.9' }, '-=0.1')
-            .to(arrow, 0.1, { x: '-=5' })
-            .to(letter, 0.1, { x: '-=5', scaleX: '1' }, '-=0.1')
-            .to(arrow, 0.1, { rotation: -180, delay: 0.3 })
-            .to(arrow, 0.1, { x: '-=5', delay: 0.3 })
-            .to(parcel, 0.1, { x: '-=5', scaleX: '0.9' }, '-=0.1')
-            .to(arrow, 0.1, { x: '+=5' })
-            .to(parcel, 0.1, { x: '+=5', scaleX: '1' }, '-=0.1')
-            .to(loop, 0.1, { rotation: -15, transformOrigin: 'bottom center' }, '-=0.2')
-            .to(loop, 0.5, { rotation: 0, ease: Elastic.easeOut })
-            .to(arrow, 0.1, { rotation: 0, delay: 1 }, '-=0.5');
+        const timeline = new TimelineMax({ repeat: -1 })
+            .to(arrow, 0.1, { x: '+=5', delay: 0.3 }) // bump arrow right after .1s
+            .to(letter, 0.1, { x: '+=5', scaleX: '0.9' }, '-=0.1') // bump letter right at the same time as arrow
+            .to(arrow, 0.1, { x: '-=5' }) // return arrow to original position
+            .to(letter, 0.1, { x: '-=5', scaleX: '1' }, '-=0.1') // return letter to original position as the same time as arrow
+            .to(arrow, 0.1, { rotation: -180, delay: 0.5 }) // wait .3s and turn the arrow
+            .to(arrow, 0.1, { x: '-=5', delay: 0.5 }) // wait .3s and bump arrow left
+            .to(parcel, 0.1, { x: '-=5', scaleX: '0.9' }, '-=0.1') // bump parcel left at the same time as arrow
+            .to(arrow, 0.1, { x: '+=5' }) // return arrow to original position
+            .to(parcel, 0.1, { x: '+=5', scaleX: '1' }, '-=0.1') // return parcel to original position at the same time as arrow
+            .to(loop, 0.1, { rotation: -15, transformOrigin: 'bottom center' }, '-=0.2') // move loop in order to spring it back
+            .to(loop, 0.5, { rotation: 0, ease: Elastic.easeOut }) // bounce the loop back into position
+            .to(arrow, 0.1, { rotation: 0, delay: 0.5 }, '-=0.5'); // Wait .3s and turn the arrow back again
 
             this.setState({activeTimeline: timeline});
     }
@@ -58,7 +58,9 @@ class SVGContainer extends Component {
         const tl = new TimelineMax();
         tl.to([arrow, letter], 0.2, { scale: 0 })
             .to(parcel, 0.3, { x: '100' })
-            .to(parcel, 0.2, { delay: 0.2, scale: 1.2, ease: Back.easeOut })
+            .to(loop, 0.1, { rotation: -15, transformOrigin: 'bottom center' }, '-=0.3')
+            .to(loop, 1, { rotation: 0, ease: Elastic.easeOut })
+            .to(parcel, 0.3, { scale: 1.2, ease: Back.easeOut });
     }
 
     showLetter() {
